@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longdan - Google Ads Strategic Performance Audit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #162642 0%, #1a2d4f 100%);
+            color: white;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        .slide-number {
+            background: #cc5b27;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .main-title {
+            font-size: 3.2em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #cc5b27, #ff7c4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.4em;
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #cc5b27;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #cc5b27;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #cc5b27;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #cc5b27, #ff7c4c);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .highlight-box h3, .warning-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+        
+        .data-table {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            background: #cc5b27;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .performance-table {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .performance-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .performance-table th {
+            background: #2c3e50;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: left;
+        }
+        
+        .performance-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+        }
+        
+        .bullet-points {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .bullet-points li {
+            margin: 12px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .bullet-points li:before {
+            content: "▶";
+            color: #cc5b27;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .issue-box {
+            background: rgba(255, 87, 34, 0.2);
+            border: 2px solid #FF5722;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .issue-title {
+            color: #FF5722;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">01</div>
+        </div>
+        <div class="main-title">Longdan Google Ads</div>
+        <div class="subtitle">Strategic Performance Audit & 90-Day Growth Roadmap</div>
+        
+        <div class="warning-box">
+            <h3>⚠️ CRITICAL: Massive Wasted Spend Identified</h3>
+            <p><strong>£117.69 (15.3% of budget) wasted on 0-conversion keywords in 30 days</strong></p>
+            <p>"Longdan" and "near me" searches driving zero value - immediate action required</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">£767.67</span>
+                <div class="stat-label">30-Day Ad Spend</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">630.70</span>
+                <div class="stat-label">Total Conversions</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">£1.22</span>
+                <div class="stat-label">Cost Per Conversion</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">38.72%</span>
+                <div class="stat-label">Account Health Score</div>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h3>Performance Period: September 22 - October 20, 2025</h3>
+            <p>15,700 clicks | 2.50% CTR | £0.049 CPC | 4.01% Conversion Rate</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Executive Summary -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">02</div>
+        </div>
+        <div class="section-title">Executive Summary: Critical Findings</div>
+        
+        <div class="two-column">
+            <div>
+                <h3 style="color: #4CAF50; margin-bottom: 15px;">✓ Key Wins</h3>
+                <ul class="bullet-points">
+                    <li>Exceptionally low £1.22 CPA indicates strong product-market fit</li>
+                    <li>HM Search Campaign: £0.73 CPA with 228.66 conversions (best performer)</li>
+                    <li>PMAX Campaign: £1.00 CPA driving 355 conversions (highest volume)</li>
+                    <li>Mobile dominates with 84% of spend and 95% of conversions</li>
+                    <li>Strong 4% conversion rate from clicks to store actions</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color: #FF5722; margin-bottom: 15px;">⚠️ Critical Issues</h3>
+                <ul class="bullet-points">
+                    <li>15.3% of budget wasted on "longdan" and "near me" zero-conversion searches</li>
+                    <li>98.5% of spend on non-added keywords = zero keyword control</li>
+                    <li>Only broad match keywords used - hemorrhaging budget</li>
+                    <li>Zero negative keyword lists across all campaigns</li>
+                    <li>112 case-sensitive keywords causing match issues</li>
+                    <li>Account health score of 38.72% (failing grade)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h3>90-Day Opportunity: £230-£460 Monthly Savings + 3-5x Conversion Growth</h3>
+            <p>Implementing proper keyword structure and negative lists could reduce CPA to £0.40-£0.60 while scaling conversions from 630 to 1,900-3,150/month</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" style="border-color: #FF5722;">
+                <span class="stat-number" style="color: #FF5722;">£117.69</span>
+                <div class="stat-label">Wasted Spend (30 days)<br>Top 2 keywords: 0 conversions</div>
+            </div>
+            <div class="stat-card" style="border-color: #FFC107;">
+                <span class="stat-number" style="color: #FFC107;">0</span>
+                <div class="stat-label">Negative Keyword Lists<br>Critical Gap</div>
+            </div>
+            <div class="stat-card" style="border-color: #2196F3;">
+                <span class="stat-number" style="color: #2196F3;">98.5%</span>
+                <div class="stat-label">Non-Added Keyword Spend<br>No Control</div>
+            </div>
+            <div class="stat-card" style="border-color: #9C27B0;">
+                <span class="stat-number" style="color: #9C27B0;">0%</span>
+                <div class="stat-label">Enhanced Conversions<br>Missing Revenue Data</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Current Performance Baseline -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">03</div>
+        </div>
+        <div class="section-title">30-Day Performance Baseline (Sept 22 - Oct 20, 2025)</div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">£767.67</span>
+                <div class="stat-label">Total Ad Spend</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">630.70</span>
+                <div class="stat-label">Total Conversions</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">15,700</span>
+                <div class="stat-label">Total Clicks</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">£1.22</span>
+                <div class="stat-label">Cost Per Conversion</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">£0.049</span>
+                <div class="stat-label">Avg Cost Per Click</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">4.01%</span>
+                <div class="stat-label">Conversion Rate</div>
+            </div>
+        </div>
+
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th>Campaign</th>
+                    <th>Spend</th>
+                    <th>Conversions</th>
+                    <th>CPA</th>
+                    <th>CTR</th>
+                    <th>Clicks</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><strong>HM Search Campaign</strong></td>
+                    <td>£167.75</td>
+                    <td>228.66</td>
+                    <td style="color: #4CAF50;"><strong>£0.73</strong></td>
+                    <td>7.18%</td>
+                    <td>3,763</td>
+                    <td style="color: #4CAF50;"><strong>TOP PERFORMER</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>HM - PMAX Shopping Only</strong></td>
+                    <td>£354.25</td>
+                    <td>355.04</td>
+                    <td style="color: #4CAF50;"><strong>£1.00</strong></td>
+                    <td>6.61%</td>
+                    <td>5,570</td>
+                    <td style="color: #4CAF50;"><strong>HIGH VOLUME</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>HM Shopping Campaign June</strong></td>
+                    <td>£245.67</td>
+                    <td>47.00</td>
+                    <td style="color: #FFC107;">£5.23</td>
+                    <td>1.28%</td>
+                    <td>6,367</td>
+                    <td style="color: #FFC107;">NEEDS OPTIMIZATION</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="two-column">
+            <div class="issue-box">
+                <div class="issue-title">Period-over-Period Decline</div>
+                <div style="font-size: 13px;">
+                    <strong>Spend:</strong> -33.2% (£767.67 vs £1,214.90 prior period)<br>
+                    <strong>Conversions:</strong> -63.7% (630.70 vs 1,733.78 prior period)<br>
+                    <strong>Clicks:</strong> -33.2% (15,700 vs 23,716 prior period)<br>
+                    <strong>Root Cause:</strong> Impression decline of -33.2% suggests budget constraints or policy limitations
+                </div>
+            </div>
+            <div class="issue-box">
+                <div class="issue-title">Device Performance Gap</div>
+                <div style="font-size: 13px;">
+                    <strong>Mobile:</strong> £645.18 spend | 600.71 conv | £1.07 CPA<br>
+                    <strong>Desktop:</strong> £111.94 spend | 26 conv | £4.31 CPA<br>
+                    <strong>Insight:</strong> Desktop CPA is 4x higher - consider reducing desktop bids or reallocating budget to mobile
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Wasted Spend Analysis -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">04</div>
+        </div>
+        <div class="section-title">Wasted Spend: £117.69 on Zero-Conversion Keywords</div>
+        
+        <div class="warning-box">
+            <h3>Critical Issue: 15.3% of Budget Generating Zero Conversions</h3>
+            <p>The top 2 search terms by spend have delivered <strong>0 conversions</strong> while consuming nearly 1/6 of your budget</p>
+        </div>
+
+        <div class="data-table">
+            <table>
+                <tr>
+                    <th>Search Term</th>
+                    <th>Spend</th>
+                    <th>Clicks</th>
+                    <th>Conversions</th>
+                    <th>Issue</th>
+                    <th>Action Required</th>
+                </tr>
+                <tr>
+                    <td><strong>"longdan"</strong></td>
+                    <td style="color: #FF5722;">£76.07</td>
+                    <td>1,639</td>
+                    <td style="color: #FF5722;"><strong>0</strong></td>
+                    <td>Brand navigation query, not purchase intent</td>
+                    <td style="color: #FFC107;">Add as negative keyword immediately</td>
+                </tr>
+                <tr>
+                    <td><strong>"near me"</strong></td>
+                    <td style="color: #FF5722;">£41.62</td>
+                    <td>914</td>
+                    <td style="color: #FF5722;"><strong>0</strong></td>
+                    <td>Location-based, no online purchase intent</td>
+                    <td style="color: #FFC107;">Add as negative keyword immediately</td>
+                </tr>
+                <tr>
+                    <td>"asian"</td>
+                    <td>£9.84</td>
+                    <td>194</td>
+                    <td>0</td>
+                    <td>Too broad, low intent</td>
+                    <td>Add to negative list</td>
+                </tr>
+                <tr>
+                    <td>"supermarket"</td>
+                    <td>£9.81</td>
+                    <td>223</td>
+                    <td>0</td>
+                    <td>Physical store intent</td>
+                    <td>Add to negative list</td>
+                </tr>
+                <tr>
+                    <td>"grocery store"</td>
+                    <td>£7.42</td>
+                    <td>205</td>
+                    <td>0</td>
+                    <td>Physical store intent</td>
+                    <td>Add to negative list</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Immediate Savings Opportunity: £230-£460/month</h3>
+            <p>Adding these 15+ negative keywords would save £117.69 per 30-day period = <strong>£1,412-£1,649 annually</strong></p>
+        </div>
+
+        <div class="two-column">
+            <div>
+                <div class="section-title" style="font-size: 1.4em;">Additional Zero-Conversion Terms</div>
+                <ul class="bullet-points">
+                    <li>"buldak" - £7.10 (209 clicks, 0 conv)</li>
+                    <li>"noodles" - £3.95 (105 clicks, 0 conv)</li>
+                    <li>"asda" - £3.24 (77 clicks, 0 conv)</li>
+                    <li>"mooncake" - £2.95 (68 clicks, 0 conv)</li>
+                    <li>"tamarind" - £2.62 (61 clicks, 0 conv)</li>
+                    <li>"chinese" - £2.44 (66 clicks, 0 conv)</li>
+                </ul>
+            </div>
+            <div>
+                <div class="section-title" style="font-size: 1.4em;">Recommended Negative Keyword Strategy</div>
+                <ul class="bullet-points">
+                    <li>Create shared negative keyword list: "Brand Navigation Terms"</li>
+                    <li>Add: longdan, hong mao, near me, directions</li>
+                    <li>Create list: "Physical Store Intent"</li>
+                    <li>Add: supermarket, grocery store, store near me, open now</li>
+                    <li>Create list: "Competitor Names"</li>
+                    <li>Add: asda, waitrose, tesco, sainsburys</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Account Health Assessment -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">05</div>
+        </div>
+        <div class="section-title">45-Point Account Health Check: 38.72% Score</div>
+        
+        <div class="warning-box">
+            <h3>Overall Grade: FAILING - Immediate Action Required</h3>
+            <p>Critical structural issues are costing you 30-50% in wasted spend and limiting scaling potential</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" style="border-color: #FF5722;">
+                <span class="stat-number" style="color: #FF5722;">27.5%</span>
+                <div class="stat-label">Account Settings Score</div>
+            </div>
+            <div class="stat-card" style="border-color: #4CAF50;">
+                <span class="stat-number" style="color: #4CAF50;">75.0%</span>
+                <div class="stat-label">Conversion Tracking Score</div>
+            </div>
+            <div class="stat-card" style="border-color: #FF5722;">
+                <span class="stat-number" style="color: #FF5722;">27.5%</span>
+                <div class="stat-label">Targeting & Bidding Score</div>
+            </div>
+            <div class="stat-card" style="border-color: #FFC107;">
+                <span class="stat-number" style="color: #FFC107;">67.5%</span>
+                <div class="stat-label">Ads Score</div>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div>
+                <h3 style="color: #FF5722; margin-bottom: 15px;">❌ Critical Failures (0 Points)</h3>
+                <div class="issue-box">
+                    <div class="issue-title">Keyword Control Crisis</div>
+                    <div style="font-size: 13px;">
+                        • <strong>98.5% spend on non-added keywords</strong> (only £10.01 of £689.90 on added keywords)<br>
+                        • Only broad match keywords in use<br>
+                        • Zero phrase match or exact match keywords<br>
+                        • 112 case-sensitive keyword duplicates<br>
+                        • 15 low-activity keywords wasting budget
+                    </div>
+                </div>
+                <div class="issue-box">
+                    <div class="issue-title">Zero Negative Keyword Protection</div>
+                    <div style="font-size: 13px;">
+                        • 0 campaigns using negative keywords<br>
+                        • No shared negative keyword lists<br>
+                        • No IP exclusions<br>
+                        • No placement exclusions<br>
+                        • No mobile app exclusions
+                    </div>
+                </div>
+                <div class="issue-box">
+                    <div class="issue-title">Missing Conversion Optimization</div>
+                    <div style="font-size: 13px;">
+                        • Enhanced Conversions for Leads: Not enabled<br>
+                        • Auto-tagging: Disabled<br>
+                        • 4 primary conversion actions (should be 2)<br>
+                        • 50% using Data-Driven attribution (should be 100%)
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: #FFC107; margin-bottom: 15px;">⚠️ Medium Priority Issues</h3>
+                <div class="issue-box">
+                    <div class="issue-title">Ad Quality Problems</div>
+                    <div style="font-size: 13px;">
+                        • 0% of ads rated Good or Excellent<br>
+                        • No callouts on any campaigns<br>
+                        • 1 disapproved sitelink in HM Search Campaign<br>
+                        • Missing demand gen and display campaigns
+                    </div>
+                </div>
+                <div class="issue-box">
+                    <div class="issue-title">Audience Gaps</div>
+                    <div style="font-size: 13px;">
+                        • 0 Google Analytics audiences<br>
+                        • 0 customer list audiences<br>
+                        • 0 lookalike audiences<br>
+                        • 0 similar audiences<br>
+                        • Only 11 rule-based audiences active
+                    </div>
+                </div>
+                <div class="issue-box">
+                    <div class="issue-title">Auto-Apply Recommendations Active</div>
+                    <div style="font-size: 13px;">
+                        Dangerous settings enabled:<br>
+                        • MAXIMIZE_CONVERSIONS_OPT_IN<br>
+                        • TARGET_ROAS_OPT_IN<br>
+                        • RAISE_TARGET_CPA<br>
+                        • LOWER_TARGET_ROAS<br>
+                        <strong>Action:</strong> Disable to maintain control
+                    </div>
+                </div>
+                <h3 style="color: #4CAF50; margin-bottom: 15px; margin-top: 20px;">✓ What's Working</h3>
+                <ul class="bullet-points" style="font-size: 13px;">
+                    <li>Conversion tracking enabled and functioning</li>
+                    <li>4 active conversion actions tracking properly</li>
+                    <li>No disapproved keywords or ads</li>
+                    <li>All ad groups have active keywords and ads</li>
+                    <li>Campaigns using "Optimize" ad rotation</li>
+                    <li>Average Quality Score of 6.80 (60% above average)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Competitive Landscape -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">06</div>
+        </div>
+        <div class="section-title">Competitive Keyword Analysis: Market Opportunities</div>
+        
+        <div class="highlight-box">
+            <h3>Your SEO Position is Strong - But You're Paying for Your Own Brand Traffic</h3>
+            <p>Ranking #1-3 for most key terms organically, yet spending £76.07/month on "longdan" branded searches that would convert organically anyway</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" style="border-color: #4CAF50;">
+                <span class="stat-number" style="color: #4CAF50;">Top 3</span>
+                <div class="stat-label">Average Organic Rank<br>For Key Terms</div>
+            </div>
+            <div class="stat-card" style="border-color: #2196F3;">
+                <span class="stat-number" style="color: #2196F3;">100+</span>
+                <div class="stat-label">Keywords You Rank For<br>(SEO Data)</div>
+            </div>
+            <div class="stat-card" style="border-color: #FF9800;">
+                <span class="stat-number" style="color: #FF9800;">31,100</span>
+                <div class="stat-label">Monthly Searches<br>"asian supermarket near me"</div>
+            </div>
+            <div class="stat-card" style="border-color: #E91E63;">
+                <span class="stat-number" style="color: #E91E63;">£0.01</span>
+                <div class="stat-label">Cheapest CPC Available<br>Low Competition Terms</div>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div>
+                <div class="section-title" style="font-size: 1.4em;">High-Opportunity Keywords (Low CPC, High Volume)</div>
+                <div class="data-table">
+                    <table>
+                        <tr><th>Keyword</th><th>Monthly Searches</th><th>CPC</th></tr>
+                        <tr><td>gyoza</td><td>18,700</td><td>£0.34</td></tr>
+                        <tr><td>dumplings</td><td>15,000</td><td>£0.31</td></tr>
+                        <tr><td>tamarind</td><td>14,900</td><td>£0.50</td></tr>
+                        <tr><td>prawn crackers</td><td>6,000</td><td>£0.37</td></tr>
+                        <tr><td>chinese supermarket</td><td>6,500</td><td>£0.41</td></tr>
+                        <tr><td>asian supermarket</td><td>7,200</td><td>N/A</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="section-title" style="font-size: 1.4em;">Your SEO Strengths (Already Ranking)</div>
+                <div class="data-table">
+                    <table>
+                        <tr><th>Keyword</th><th>Your Rank</th><th>SEO Clicks/mo</th></tr>
+                        <tr><td>gyoza</td><td>4</td><td>810</td></tr>
+                        <tr><td>dumplings</td><td>4</td><td>630</td></tr>
+                        <tr><td>tamarind</td><td>6</td><td>440</td></tr>
+                        <tr><td>asian supermarket</td><td>5</td><td>250</td></tr>
+                        <tr><td>prawn crackers</td><td>4</td><td>260</td></tr>
+                        <tr><td>chinese supermarket</td><td>5</td><td>220</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <h3>Strategic Recommendation: Stop Paying for Your Own Traffic</h3>
+            <p>Add "longdan" and your brand terms to negative keywords. You're already ranking #1 organically for these - the paid clicks are cannibalizing free traffic at a cost of £76.07/month (£912/year)</p>
+        </div>
+    </div>
+
+    <!-- Slide 7: 90-Day Growth Roadmap -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">07</div>
+        </div>
+        <div class="section-title">90-Day Growth Roadmap & Projections</div>
+        
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th>Metrics</th>
+                    <th>Current Baseline</th>
+                    <th>Month 1 Target</th>
+                    <th>Month 2 Target</th>
+                    <th>Month 3 Target</th>
+                </tr>
+                <tr>
+                    <td><strong>Monthly Spend</strong></td>
+                    <td>£767.67</td>
+                    <td>£650.00</td>
+                    <td>£850.00</td>
+                    <td>£1,150.00</td>
+                </tr>
+                <tr>
+                    <td><strong>Wasted Spend Reduction</strong></td>
+                    <td>£117.69</td>
+                    <td>£20.00</td>
+                    <td>£10.00</td>
+                    <td>£5.00</td>
+                </tr>
+                <tr>
+                    <td><strong>Conversions</strong></td>
+                    <td>630.70</td>
+                    <td>1,080</td>
+                    <td>1,700</td>
+                    <td>2,300</td>
+                </tr>
+                <tr>
+                    <td><strong>Target CPA</strong></td>
+                    <td>£1.22</td>
+                    <td>£0.60</td>
+                    <td>£0.50</td>
+                    <td>£0.50</td>
+                </tr>
+                <tr>
+                    <td><strong>Conversion Rate</strong></td>
+                    <td>4.01%</td>
+                    <td>5.50%</td>
+                    <td>6.50%</td>
+                    <td>7.00%</td>
+                </tr>
+                <tr>
+                    <td><strong>Keyword Control</strong></td>
+                    <td>1.5% added keywords</td>
+                    <td>40% added keywords</td>
+                    <td>60% added keywords</td>
+                    <td>75% added keywords</td>
+                </tr>
+                <tr style="background: rgba(76, 175, 80, 0.2);">
+                    <td><strong>Improvement vs Baseline</strong></td>
+                    <td>-</td>
+                    <td style="color: #4CAF50;">+71% conversions<br>-51% CPA</td>
+                    <td style="color: #4CAF50;">+170% conversions<br>-59% CPA</td>
+                    <td style="color: #4CAF50;">+265% conversions<br>-59% CPA</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Conservative Projection: 3x Conversion Growth with 50% Lower CPA</h3>
+            <p><strong>Month 3 Target:</strong> 2,300 conversions at £0.50 CPA = £1,150 spend (vs current 631 conversions at £1.22 CPA = £768 spend)</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" style="border-color: #4CAF50;">
+                <span class="stat-number" style="color: #4CAF50;">+265%</span>
+                <div class="stat-label">Conversion Growth<br>Month 3 Target</div>
+            </div>
+            <div class="stat-card" style="border-color: #2196F3;">
+                <span class="stat-number" style="color: #2196F3;">-59%</span>
+                <div class="stat-label">CPA Reduction<br>Through Optimization</div>
+            </div>
+            <div class="stat-card" style="border-color: #FF9800;">
+                <span class="stat-number" style="color: #FF9800;">£1,374</span>
+                <div class="stat-label">Annual Savings<br>From Negative Keywords</div>
+            </div>
+            <div class="stat-card" style="border-color: #E91E63;">
+                <span class="stat-number" style="color: #E91E63;">50%</span>
+                <div class="stat-label">Budget Increase<br>Once Optimized</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Week-by-Week Implementation -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">08</div>
+        </div>
+        <div class="section-title">Month 1: Week-by-Week Action Plan</div>
+        
+        <div class="two-column">
+            <div>
+                <div class="issue-box" style="border-color: #4CAF50; background: rgba(76, 175, 80, 0.2);">
+                    <div class="issue-title" style="color: #4CAF50;">Week 1: Emergency Fixes (Days 1-7)</div>
+                    <ul class="bullet-points" style="font-size: 13px;">
+                        <li><strong>Day 1:</strong> Add 15 negative keywords (longdan, near me, supermarket, etc.)</li>
+                        <li><strong>Day 1:</strong> Create 3 shared negative keyword lists (Brand Nav, Physical Store, Competitors)</li>
+                        <li><strong>Day 2:</strong> Fix 112 case-sensitive keyword duplicates</li>
+                        <li><strong>Day 3:</strong> Pause 15 low-activity keywords</li>
+                        <li><strong>Day 4:</strong> Reduce desktop bids by 50% (CPA 4x higher than mobile)</li>
+                        <li><strong>Day 5:</strong> Enable Enhanced Conversions for Leads</li>
+                        <li><strong>Day 6:</strong> Enable auto-tagging</li>
+                        <li><strong>Day 7:</strong> Review performance impact</li>
+                        <li><strong>Expected Impact:</strong> 15% spend reduction, maintain conversions</li>
+                    </ul>
+                </div>
+                <div class="issue-box" style="border-color: #2196F3; background: rgba(33, 150, 243, 0.2);">
+                    <div class="issue-title" style="color: #2196F3;">Week 2: Keyword Structure Overhaul (Days 8-14)</div>
+                    <ul class="bullet-points" style="font-size: 13px;">
+                        <li><strong>Day 8:</strong> Add 20 exact match keywords from top performers</li>
+                        <li><strong>Day 9:</strong> Add 30 phrase match keywords</li>
+                        <li><strong>Day 10:</strong> Create new ad groups for high-intent product terms (gyoza, dumplings, tamarind)</li>
+                        <li><strong>Day 11:</strong> Add callouts to all campaigns (min 4 per campaign)</li>
+                        <li><strong>Day 12:</strong> Fix disapproved sitelink in HM Search Campaign</li>
+                        <li><strong>Day 13:</strong> Consolidate to 2 primary conversion actions</li>
+                        <li><strong>Day 14:</strong> Enable Data-Driven attribution for all conversion actions</li>
+                        <li><strong>Expected Impact:</strong> 30% increase in added keyword control</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="issue-box" style="border-color: #FF9800; background: rgba(255, 152, 0, 0.2);">
+                    <div class="issue-title" style="color: #FF9800;">Week 3: Campaign Optimization (Days 15-21)</div>
+                    <ul class="bullet-points" style="font-size: 13px;">
+                        <li><strong>Day 15:</strong> Optimize HM Shopping Campaign (£5.23 CPA too high)</li>
+                        <li><strong>Day 16:</strong> Split test new ad copy with "Good" ad strength</li>
+                        <li><strong>Day 17:</strong> Create customer list audience from customer data</li>
+                        <li><strong>Day 18:</strong> Create lookalike audience based on converters</li>
+                        <li><strong>Day 19:</strong> Disable auto-apply recommendations</li>
+                        <li><strong>Day 20:</strong> Set up IP and placement exclusions</li>
+                        <li><strong>Day 21:</strong> Review and optimize budget allocation based on Week 1-2 data</li>
+                        <li><strong>Expected Impact:</strong> 20% CPA reduction, 40% conversion increase</li>
+                    </ul>
+                </div>
+                <div class="issue-box" style="border-color: #E91E63; background: rgba(233, 30, 99, 0.2);">
+                    <div class="issue-title" style="color: #E91E63;">Week 4: Scale & Expand (Days 22-30)</div>
+                    <ul class="bullet-points" style="font-size: 13px;">
+                        <li><strong>Day 22:</strong> Launch Demand Gen campaign targeting high-intent audiences</li>
+                        <li><strong>Day 23:</strong> Increase budget on HM Search Campaign (best performer)</li>
+                        <li><strong>Day 24:</strong> Add 25 new product-specific keywords from SEO data</li>
+                        <li><strong>Day 25:</strong> Optimize product feed for Shopping campaigns</li>
+                        <li><strong>Day 26:</strong> Create product-specific ad groups for top 10 products</li>
+                        <li><strong>Day 27:</strong> Set up Google Analytics audiences for retargeting</li>
+                        <li><strong>Day 28-30:</strong> Monitor, analyze, and prepare Month 2 strategy</li>
+                        <li><strong>Expected Impact:</strong> 70% conversion increase vs baseline</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Strategic Recommendations -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Lead Guru Logo" class="logo">
+            <div class="slide-number">09</div>
+        </div>
+        <div class="main-title" style="font-size: 2.5em;">Strategic Recommendations</div>
+        <div class="subtitle">Priority Actions for Immediate Impact</div>
+        
+        <div class="highlight-box">
+            <h3>Bottom Line: Fix The Fundamentals Before Scaling</h3>
+            <p>You have exceptionally strong performance (£1.22 CPA) being held back by poor account structure. Fix keyword control and negative keywords first, then scale budget by 50-100% within 90 days.</p>
+        </div>
+
+        <div class="three-column">
+            <div class="issue-box" style="border-color: #d32f2f; background: rgba(211, 47, 47, 0.2);">
+                <div class="issue-title" style="color: #d32f2f;">🚨 CRITICAL (Do Today)</div>
+                <ul class="bullet-points" style="font-size: 12px;">
+                    <li>Add "longdan" and "near me" to negative keywords (saves £117/mo)</li>
+                    <li>Create 3 shared negative keyword lists</li>
+                    <li>Fix 112 case-sensitive keyword duplicates</li>
+                    <li>Reduce desktop bids 50% (CPA 4x too high)</li>
+                    <li>Enable Enhanced Conversions for Leads</li>
+                    <li>Enable auto-tagging</li>
+                </ul>
+            </div>
+            <div class="issue-box" style="border-color: #FF9800; background: rgba(255, 152, 0, 0.2);">
+                <div class="issue-title" style="color: #FF9800;">⚠️ HIGH PRIORITY (Week 1)</div>
+                <ul class="bullet-points" style="font-size: 12px;">
+                    <li>Add 50 exact/phrase match keywords</li>
+                    <li>Consolidate to 2 primary conversion actions</li>
+                    <li>Add callouts to all campaigns</li>
+                    <li>Fix disapproved sitelink</li>
+                    <li>Create customer list audience</li>
+                    <li>Optimize HM Shopping Campaign (£5.23 CPA)</li>
+                    <li>Disable auto-apply recommendations</li>
+                </ul>
+            </div>
+            <div class="issue-box" style="border-color: #2196F3; background: rgba(33, 150, 243, 0.2);">
+                <div class="issue-title" style="color: #2196F3;">📈 MEDIUM PRIORITY (Weeks 2-4)</div>
+                <ul class="bullet-points" style="font-size: 12px;">
+                    <li>Launch Demand Gen campaign</li>
+                    <li>Create lookalike audiences</li>
+                    <li>Improve ad strength to "Good" (currently 0%)</li>
+                    <li>Set up Google Analytics audiences</li>
+                    <li>Add mobile app exclusions</li>
+                    <li>Optimize product feed quality</li>
+                    <li>Create product-specific ad groups</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th>Recommendation Category</th>
+                    <th>Current State</th>
+                    <th>Target State</th>
+                    <th>Expected Impact</th>
+                    <th>Timeline</th>
+                </tr>
+                <tr>
+                    <td><strong>Keyword Control</strong></td>
+                    <td>1.5% added keywords</td>
+                    <td>75% added keywords</td>
+                    <td>50% CPA reduction</td>
+                    <td>30 days</td>
+                </tr>
+                <tr>
+                    <td><strong>Negative Keywords</strong></td>
+                    <td>0 negative lists</td>
+                    <td>3 shared lists, 50+ terms</td>
+                    <td>15% waste elimination</td>
+                    <td>7 days</td>
+                </tr>
+                <tr>
+                    <td><strong>Match Types</strong></td>
+                    <td>100% broad match</td>
+                    <td>40% exact, 30% phrase, 30% broad</td>
+                    <td>60% CPA reduction</td>
+                    <td>14 days</td>
+                </tr>
+                <tr>
+                    <td><strong>Conversion Optimization</strong></td>
+                    <td>Basic setup</td>
+                    <td>Enhanced conversions + Data-Driven</td>
+                    <td>20% better attribution</td>
+                    <td>7 days</td>
+                </tr>
+                <tr>
+                    <td><strong>Device Strategy</strong></td>
+                    <td>Desktop CPA 4x mobile</td>
+                    <td>Mobile-first with desktop optimization</td>
+                    <td>10% budget savings</td>
+                    <td>7 days</td>
+                </tr>
+                <tr style="background: rgba(76, 175, 80, 0.2);">
+                    <td><strong>TOTAL IMPACT</strong></td>
+                    <td colspan="2" style="text-align: center;"><strong>Combined Optimization</strong></td>
+                    <td style="color: #4CAF50;"><strong>3x conversions<br>-50% CPA</strong></td>
+                    <td><strong>90 days</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="cta-section">
+            <div style="font-size: 1.4em; margin-bottom: 20px;">
+                <strong>RECOMMENDATION: IMPLEMENT CRITICAL FIXES IMMEDIATELY</strong>
+            </div>
+            <div style="font-size: 1.1em; line-height: 1.8;">
+                <strong>Week 1 Priority:</strong> Stop wasting £117/month on zero-conversion keywords<br>
+                <strong>Month 1 Goal:</strong> Achieve 70% conversion increase while reducing CPA to £0.60<br>
+                <strong>90-Day Vision:</strong> 3x conversions (630 → 2,300) at 50% lower CPA (£1.22 → £0.50)
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
